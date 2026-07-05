@@ -1,6 +1,6 @@
 # Educational CI/CD Target Service
 
-Этот микросервис используется для демонстрации этапов Build, Test и Deploy в рамках курса по DevOps в университете ИТМО. 
+Этот микросервис используется для демонстрации этапа CI (сборка докер-образа проекта) и деплоя в Kubernetes. 
 
 Статус проекта: **Educational CI/CD Target Service**.
 
