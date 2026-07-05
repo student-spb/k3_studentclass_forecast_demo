@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weather-app
+  template:
+    metadata:
+      labels:
+        app: weather-app
+    spec:
+      containers:
+      - name: weather-app
+        image: ghcr.io/<ВАШ_GITHUB_ЛОГИН>/weather-app:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: YANDEX_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: weather-secrets
+              key: yandex-api-key
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: weather-app-service
+spec:
+  type: NodePort
+  selector:
+    app: weather-app
+  ports:
+    - port: 80
+      targetPort: 3000
